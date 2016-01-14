@@ -7,7 +7,7 @@
 char* getUserChoice() {
     /* Prompt the user "Enter rock, paper, or scissors: " and return
        the string they enter */
-    char *choice = NULL;
+    char *choice = malloc(50);
 
     printf("Enter rock, paper, or scissors:");
     scanf("%s", choice);
@@ -23,8 +23,8 @@ char* getUserChoice() {
         return choice;
     } else {
         printf("Invalid user choice, you must enter rock, paper, or scissors.\n");
-        break;
     }
+    return "error - getUserChoice";
 }
  
 char* getComputerChoice() {
@@ -43,6 +43,7 @@ char* getComputerChoice() {
     if(randChoice == 2){
         return "scissors";
     } 
+    return "error - getComputerChoice";
 }
  
 char* compare(char* choice1, char* choice2)
@@ -52,39 +53,40 @@ char* compare(char* choice1, char* choice2)
  
      Make sure to use strcmp for string comparison.
      */
-     char rock_wins = "Rock wins.";
-     char paper_wins = "Paper wins.";
-     char scsrs_wins = "Scissors win.";
-     char tie_game = "This game is a tie.";
+     char *rock_wins = "Rock wins.";
+     char *paper_wins = "Paper wins.";
+     char *scsrs_wins = "Scissors win.";
+     char *tie_game = "This game is a tie.";
 
 
      if(strcmp(choice1, choice2) == 0){
-        return *tie_game
+        return tie_game;
      }
-     if(choice1 == "rock"){
-        if(choice2 == "paper"){
-            return *paper_wins;
+     if(strcmp(choice1, "rock") == 0){
+        if(strcmp(choice2, "paper") == 0){
+            return paper_wins;
         }
-        if(choice2 == "scissors"){
-            return *rock_wins;
-        }
-     }
-     if(choice1 == "paper"){
-        if(choice2 == "rock"){
-            return *paper_wins;
-        }
-        if(choice2 == "scissors"){
-            return *scsrs_wins;
+        if(strcmp(choice2, "scissors") == 0){
+            return rock_wins;
         }
      }
-     if(choice1 == "scissors"){
-        if(choice2 == "rock"){
-            return *rock_wins;
+     if(strcmp(choice1, "paper") == 0){
+        if(strcmp(choice2, "rock") == 0){
+            return paper_wins;
         }
-        if(choice2 == "paper"){
-            return *scsrs_wins;
+        if(strcmp(choice2,"scissors") == 0){
+            return scsrs_wins;
         }
      }
+     if(strcmp(choice1, "scissors") == 0){
+        if(strcmp(choice2, "rock") == 0){
+            return rock_wins;
+        }
+        if(strcmp(choice2, "paper") == 0){
+            return scsrs_wins;
+        }
+     } 
+        return "error - compare";
 }
  
 int main(int argc, char** argv)
@@ -92,6 +94,9 @@ int main(int argc, char** argv)
     char *userChoice = NULL, *computerChoice = NULL, *outcome = NULL;
  
     userChoice = getUserChoice();
+    while(strcmp(userChoice, "error - getUserChoice") == 0){
+        getUserChoice();
+    }
     computerChoice = getComputerChoice();
     outcome = compare(userChoice, computerChoice);
  

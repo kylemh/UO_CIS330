@@ -7,19 +7,23 @@
 char* getUserChoice() {
     /* Prompt the user "Enter rock, paper, or scissors: " and return
        the string they enter */
+    char *choice = NULL;
+
     printf("Enter rock, paper, or scissors:");
-    scanf("%d", &choice);
-    if(choice == "rock"){
-        return rock;
+    scanf("%s", choice);
+
+    /* Ensure valid choice */
+    if(strcmp(choice, "rock") == 0){
+        return choice;
     } 
-    if(choice == "paper"){
-        return paper;
+    if(strcmp(choice, "paper") == 0){
+        return choice;
     }
-    if(choice == "scissors"){
-        return scissors;
+    if(strcmp(choice, "scissors") == 0){
+        return choice;
     } else {
         printf("Invalid user choice, you must enter rock, paper, or scissors.\n");
-        continue;
+        break;
     }
 }
  
@@ -31,13 +35,13 @@ char* getComputerChoice() {
     /* If randChoice is 0, return "rock"; if randChoice is 1,
      return "paper", and if randChoice is 2, return "scissors". */
     if(randChoice == 0){
-        return rock;
+        return "rock";
     }
     if(randChoice == 1){
-        return paper;
+        return "paper";
     }
     if(randChoice == 2){
-        return scissors;
+        return "scissors";
     } 
 }
  
@@ -48,37 +52,37 @@ char* compare(char* choice1, char* choice2)
  
      Make sure to use strcmp for string comparison.
      */
-     strcmp rock_wins = "Rock wins."
-     strcmp paper_wins = "Paper wins."
-     strcmp scsrs_wins = "Scissors win."
-     strcmp tie_game = "This game is a tie."
+     char rock_wins = "Rock wins.";
+     char paper_wins = "Paper wins.";
+     char scsrs_wins = "Scissors win.";
+     char tie_game = "This game is a tie.";
 
 
-     if(strcmp choice1 == strcmp choice2){
-        return tie_game
+     if(strcmp(choice1, choice2) == 0){
+        return *tie_game
      }
-     if(strcmp choice1 == rock){
-        if(strcmp choice2 == paper){
-            return paper_wins;
+     if(choice1 == "rock"){
+        if(choice2 == "paper"){
+            return *paper_wins;
         }
-        if(strcmp choice2 == scissors){
-            return rock_wins;
-        }
-     }
-     if(strcmp choice1 == paper){
-        if(strcmp choice2 == rock){
-            return paper_wins;
-        }
-        if(strcmp choice2 == scissors){
-            return scsrs_wins;
+        if(choice2 == "scissors"){
+            return *rock_wins;
         }
      }
-     if(strcmp choice1 == scissors){
-        if(strcmp choice2 == rock){
-            return rock_wins;
+     if(choice1 == "paper"){
+        if(choice2 == "rock"){
+            return *paper_wins;
         }
-        if(strcmp choice2 == paper){
-            return scsrs_wins;
+        if(choice2 == "scissors"){
+            return *scsrs_wins;
+        }
+     }
+     if(choice1 == "scissors"){
+        if(choice2 == "rock"){
+            return *rock_wins;
+        }
+        if(choice2 == "paper"){
+            return *scsrs_wins;
         }
      }
 }

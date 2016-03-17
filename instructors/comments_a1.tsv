@@ -1,2 +1,0 @@
-Timestamp               	Name		HashID	2	4	5-first	5-avg	5-rps	Total	Late	Grader Checked	Grader Remarks	Instructor Notes
-Fri Jan 29 21:41:45 2016	Kyle Holmberg	8968	10	30	10	10	35	95		2,4,5	5-rps: after input invalid charactor, it will mention invalid input , but then it will enter into endless loop for asking to input sth.-5	

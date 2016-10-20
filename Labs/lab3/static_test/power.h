@@ -1,1 +1,0 @@
-double power(double, double);

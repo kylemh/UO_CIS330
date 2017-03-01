@@ -9,9 +9,9 @@ typedef vector<int> Row; // One row of the matrix
 typedef vector<Row> Matrix; // Matrix: a vector of rows
 
 GameOfLivestock::GameOfLivestock(int x_size, int y_size, int numSteps) {
-  theXize = x_size;
-  theYsize = y_size;
-  theNumSteps = numSteps;
+	theXize = x_size;
+	theYsize = y_size;
+	theNumSteps = numSteps;
 }
 
 void GameOfLivestock::PrintInitMatrix(Matrix aMatrixPtr) {
@@ -40,8 +40,7 @@ void GameOfLivestock::SetMatrixValues(Matrix &aMatrix) {
 	int Y = getY_size();
 
 	/* initialize random seed: */
-    srand(time(NULL));
-    //int randCellVal = (rand() % (max(X,Y)));  
+	srand(time(NULL));
 
 	for (int i=0; i < Y+1; i++){ 
 		for (int j=0; j < X+1; j++) { 
@@ -61,20 +60,20 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 
 	// USE tempMatrix if you'd like to make changes on a step-by-step basis, as opposed to real-time.
 	/****************************************************************************************
-     * Create and copy primary Matrix to a temporary matrix so changes can be entered into a
-     * grid WITHOUT affecting the calculations being performed cells in the primary Matix.
-    ****************************************************************************************/
-    /*
-    vector<vector<int> > tempMatrix;
-    tempMatrix.resize(sizeRows); //(sizeRows+2) added 2-cell buffer at begin = 0 and end = Y+1 Rows
-    for (int i = 0; i < sizeRows; ++i) {
-        tempMatrix[i].resize(sizeCols); //(sizeCols+2) added 2-cell buffer at begin = 0 and end = X+1 Cols
-    }
-    tempMatrix = theMatrix;
+	 * Create and copy primary Matrix to a temporary matrix so changes can be entered into a
+	 * grid WITHOUT affecting the calculations being performed cells in the primary Matix.
+	****************************************************************************************/
+	/*
+	vector<vector<int> > tempMatrix;
+	tempMatrix.resize(sizeRows); //(sizeRows+2) added 2-cell buffer at begin = 0 and end = Y+1 Rows
+	for (int i = 0; i < sizeRows; ++i) {
+		tempMatrix[i].resize(sizeCols); //(sizeCols+2) added 2-cell buffer at begin = 0 and end = X+1 Cols
+	}
+	tempMatrix = theMatrix;
 	*/
 
 	for(int i = 0; i < Y; i++) { //EACH ROW	
- 		for(int j = 0; j < X; j++) { //EACH COLUMN
+		for(int j = 0; j < X; j++) { //EACH COLUMN
 			int sheep_neighbor_cnt = 0;
 			int wolf_neighbor_cnt = 0;
 			int farmer_neighbor_cnt = 0;
@@ -90,42 +89,7 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 			int randRowCandidates[8];
 			int randColCandidates[8];
 
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////* DEBUGGING *///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			if (theMatrix[i][j] == 1) {
-				cout << "Were in cell (" << i << "," << j << "). It's a SHEEP." << endl;
-			} else if (theMatrix[i][j] == 2) {
-				cout << "Were in cell (" << i << "," << j << "). It's a WOLF." << endl;
-			} else if (theMatrix[i][j] == 3) {
-				cout << "Were in cell (" << i << "," << j << "). It's a FARMER." << endl;
-			} else {
-				cout << "Were in cell (" << i << "," << j << "). It's EMPTY" << endl;
-			}
-
-			cout << "begNbrRow = " << begNbrRow << " and begNbrCol = " << begNbrCol << ". The endNbrRow = " << endNbrRow << " and the endNbrCol = " << endNbrCol << endl;		
-			cout << "Its neighbors (from topleft, clockwise) are: " << endl;
-			for (int rowNum=begNbrRow; rowNum<=endNbrRow; rowNum++) {
-				for (int colNum=begNbrCol; colNum<=endNbrCol; colNum++) {
-					if (rowNum == i && colNum == j) {
-						cout << "~CURRENT CELL. ";
-					} else if (theMatrix[rowNum][colNum] == 1) {
-						cout << "SHEEP at " << rowNum << "," << colNum << ". ";
-					} else if (theMatrix[rowNum][colNum] == 2) {
-						cout << "WOLF at " << rowNum << "," << colNum << ". ";
-					} else if (theMatrix[rowNum][colNum] == 3) {
-						cout << "FARMER at " << rowNum << "," << colNum << ". ";
-					} else {
-						cout << "EMPTY at " << rowNum << "," << colNum << ". ";
-					}
-				}
-			}			
-			cout << endl << endl;
-			*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////// S H E E P ///////////////////////////////////////////////////////////////////////////
+			/* Sheep */
 			if (theMatrix[i][j] == 1) {
 				for (int rowNum=begNbrRow; rowNum<=endNbrRow; rowNum++) {
 					for (int colNum=begNbrCol; colNum<=endNbrCol; colNum++) {
@@ -145,8 +109,7 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 				}
 			}
 
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////
-			///////////////////// W O L F ////////////////////////////////////////////////////////////////////////////
+			/* Wolf */
 			else if (theMatrix[i][j] == 2) {
 				for (int rowNum=begNbrRow; rowNum<=endNbrRow; rowNum++) {
 					for (int colNum=begNbrCol; colNum<=endNbrCol; colNum++) {
@@ -170,8 +133,7 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 				}
 			}
 
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////
-			/////////////////// F A R M E R //////////////////////////////////////////////////////////////////////////
+			/* Farmer */
 			else if (theMatrix[i][j] == 3) {
 				for (int rowNum=begNbrRow; rowNum<=endNbrRow; rowNum++) {
 					for (int colNum=begNbrCol; colNum<=endNbrCol; colNum++) {
@@ -196,8 +158,7 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 				}
 			}
 
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////// B L A N K ///////////////////////////////////////////////////////////////////////////
+			/* Empty */
 			else {
 				for (int rowNum=begNbrRow; rowNum<=endNbrRow; rowNum++) {
 					for (int colNum=begNbrCol; colNum<=endNbrCol; colNum++) {
@@ -227,7 +188,7 @@ void GameOfLivestock::Simulation(Matrix &theMatrix) {
 		}
 	}
 
-    theMatrix = theMatrix; //set actual Matrix to calculated temp array
+	theMatrix = theMatrix; //set actual Matrix to calculated temp array
 	for (int printingRow = 0; printingRow < (Y+1); printingRow++) { //convert 2d-array into a graphical, string representation.
 		for (int printingCol = 0; printingCol < (X+1); printingCol++) { 
 			if(theMatrix[printingRow][printingCol] == 1) {

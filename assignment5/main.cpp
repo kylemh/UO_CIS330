@@ -48,5 +48,6 @@ int main() { // main function for Testing
 		compareLoop = 2;
 		currentStep++;
 	}
-	return EXIT_SUCCESS; //successful execution
+	
+	return EXIT_SUCCESS;
 }

@@ -9,11 +9,9 @@
 using namespace std;
 
 //CONSTRUCTOR
-DateCipher::DateCipher() : Cipher(), date("040992") {
-}
+DateCipher::DateCipher() : Cipher(), date("040992") {}
 
-DateCipher::~DateCipher() {
-}
+DateCipher::~DateCipher() {}
 
 //OVERLOAD ENCRYPT METHOD
 string DateCipher::rotate(string &input, string &dateNums, bool forward) {

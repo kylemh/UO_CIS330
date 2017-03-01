@@ -13,8 +13,7 @@ IOUtils::~IOUtils() {
 	this->closeStream();
 }
 
-void
-IOUtils::openStream(int argc, const char *argv[]) {
+void IOUtils::openStream(int argc, const char *argv[]) {
 	// If a file name is given read from file instead of standard input
 	if( argc == 2 ) { //checks for an optional input file name
 		inputStream = new std::ifstream( argv[1] );	// open the input file
@@ -27,8 +26,7 @@ IOUtils::openStream(int argc, const char *argv[]) {
 	}
 }
 
-void
-IOUtils::closeStream() {
+void IOUtils::closeStream() {
 	if (isFile && inputStream != NULL) {
 		std::ifstream *fstr = dynamic_cast<std::ifstream *>(inputStream);
 		if (fstr != NULL) {
@@ -41,8 +39,7 @@ IOUtils::closeStream() {
 	// if it's not a file (i.e., the stream is cin), don't close it
 }
 
-std::string
-IOUtils::readFromStream() {
+std::string IOUtils::readFromStream() {
 	std::string theInput;
 	char ch;
 

@@ -9,11 +9,9 @@
 using namespace std;
 
 //CONSTRUCTOR
-CaesarCipher::CaesarCipher() : Cipher(), rotation(2) {
-}
+CaesarCipher::CaesarCipher() : Cipher(), rotation(2) {}
 
-CaesarCipher::~CaesarCipher() {
-}
+CaesarCipher::~CaesarCipher() {}
 
 //OVERLOAD ENCRYPT METHOD
 string CaesarCipher::rotate(string &input, int rotor) {

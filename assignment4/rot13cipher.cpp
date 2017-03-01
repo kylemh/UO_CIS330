@@ -16,8 +16,7 @@ Rot13Cipher::~Rot13Cipher() {
 }
 
 // Overloaded encrypt method
-std::string
-Rot13Cipher::encrypt( std::string &inputText ) {
+std::string Rot13Cipher::encrypt( std::string &inputText ) {
 	std::string text = inputText;
 	std::string::size_type len = text.length();
 	for (int i = 0; i != len; ++i) {
@@ -34,8 +33,7 @@ Rot13Cipher::encrypt( std::string &inputText ) {
 	return text;
 }
 
-std::string
-Rot13Cipher::decrypt( std::string &text ) {
+std::string Rot13Cipher::decrypt( std::string &text ) {
 	// A Rot13 encryption is also a decryption (26 letters in the English alphabet)
 	return this->encrypt(text);
 }
